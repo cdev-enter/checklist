@@ -53,7 +53,7 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
                         <tr>
                             <th className="Checklist__cell__types">
                                 <div className="Checklist__types">
-                                    Aufgaben / Schüler
+                                    Aufgaben / Name
                                 </div>
                             </th>
                             {pupils?.map((pupil) => {
