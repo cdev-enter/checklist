@@ -1,0 +1,54 @@
+.Checklist {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.Checklist__table {
+    width: max-content;
+    border-collapse: separate;
+    th,
+    td {
+        background-color: var(--white);
+        border: 1px solid var(--border-color);
+    }
+}
+
+.Checklist__header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    border: 1px solid var(--border-color);
+}
+.Checklist__types,
+.Checklist__task,
+.Checklist__pupil {
+    padding: 20px;
+    text-align: start;
+}
+
+.Checklist__types {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.Checklist__taskCheck {
+    text-align: center;
+    align-items: center;
+}
+
+.Checklist__pupil__name {
+    writing-mode: sideways-lr;
+}
+
+.Checklist__actions {
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+}
