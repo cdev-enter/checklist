@@ -49,17 +49,23 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
             <table className="Checklist__table">
                 <thead className="Checklist__header">
                     <tr>
-                        <th className="Checklist__types">Aufgaben / Schüler</th>
+                        <th>
+                            <div className="Checklist__types">
+                                Aufgaben / Schüler
+                            </div>
+                        </th>
                         {pupils?.map((pupil) => {
                             return (
-                                <th key={pupil.id} className="Checklist__pupil">
-                                    <span className="Checklist__pupil__name">
-                                        {pupil.name}
-                                    </span>
-                                    <DeleteButton
-                                        title="Löschen"
-                                        onClick={handleOnDeletePupil(pupil)}
-                                    ></DeleteButton>
+                                <th key={pupil.id}>
+                                    <div className="Checklist__pupil">
+                                        <DeleteButton
+                                            title="Löschen"
+                                            onClick={handleOnDeletePupil(pupil)}
+                                        ></DeleteButton>
+                                        <span className="Checklist__pupil__name">
+                                            {pupil.name}
+                                        </span>
+                                    </div>
                                 </th>
                             );
                         })}
@@ -69,13 +75,15 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
                     {tasks?.map((task) => {
                         return (
                             <tr key={task.id}>
-                                <th scope="row" className="Checklist__task">
-                                    {task.description}
-                                    <DeleteButton
-                                        type="button"
-                                        title="Löschen"
-                                        onClick={handleOnDeleteTask(task)}
-                                    ></DeleteButton>
+                                <th scope="row">
+                                    <div className="Checklist__task">
+                                        {task.description}
+                                        <DeleteButton
+                                            type="button"
+                                            title="Löschen"
+                                            onClick={handleOnDeleteTask(task)}
+                                        ></DeleteButton>
+                                    </div>
                                 </th>
                                 {pupils?.map((pupil) => {
                                     const hasCompletedTask =
@@ -86,15 +94,21 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
                                         );
 
                                     return (
-                                        <td className="Checklist__taskCheck">
-                                            <input
-                                                type="checkbox"
-                                                checked={hasCompletedTask}
-                                                onChange={handleOnChangeCompleted(
-                                                    task,
-                                                    pupil
-                                                )}
-                                            ></input>
+                                        <td>
+                                            <div className="Checklist__taskCheck">
+                                                <label>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={
+                                                            hasCompletedTask
+                                                        }
+                                                        onChange={handleOnChangeCompleted(
+                                                            task,
+                                                            pupil
+                                                        )}
+                                                    ></input>
+                                                </label>
+                                            </div>
                                         </td>
                                     );
                                 })}
@@ -107,10 +121,12 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
             <div className="Checklist__actions">
                 <AddItem
                     label="Schüler hinzufügen"
+                    placeholder="Name"
                     onAddItem={handleOnAddPupil}
                 ></AddItem>
                 <AddItem
                     label="Aufgabe hinzufügen"
+                    placeholder="Beschreibung"
                     onAddItem={handleOnAddTask}
                 ></AddItem>
             </div>

@@ -3,10 +3,15 @@ import { useState, type ChangeEvent, type FC, type KeyboardEvent } from "react";
 import "./AddItem.scss";
 export interface AddItemProps {
     label: React.ReactNode;
+    placeholder?: string;
     onAddItem?: (value: string) => void;
 }
 
-export const AddItem: FC<AddItemProps> = ({ label, onAddItem }) => {
+export const AddItem: FC<AddItemProps> = ({
+    label,
+    placeholder,
+    onAddItem,
+}) => {
     const [value, setValue] = useState(""),
         css = classNames({
             AddItem: true,
@@ -27,6 +32,7 @@ export const AddItem: FC<AddItemProps> = ({ label, onAddItem }) => {
             <input
                 type="text"
                 value={value}
+                placeholder={placeholder}
                 onChange={handleOnChange}
                 onKeyDown={handleOnKeyDown}
             ></input>
