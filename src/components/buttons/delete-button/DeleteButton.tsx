@@ -12,10 +12,12 @@ export const DeleteButton: FC<
             HTMLButtonElement
         >
 > = ({ type = "button", className, children, ...rest }) => {
-    const css = classNames({
-        DeleteButton,
-        className,
-    });
+    const css = classNames(
+        {
+            DeleteButton,
+        },
+        className
+    );
     return (
         <button className={css} {...rest}>
             <IconClose></IconClose>

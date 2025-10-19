@@ -129,22 +129,30 @@ body {
 }
 * {
     box-sizing: border-box;
+    scrollbar-width: thin;
 }
 
 :root {
     /* CSS HEX */
     /* CSS HEX */
-    --battleship-gray: #818d92ff;
-    --battleship-gray-2: #a09588ff;
-    --lion: #bf9c7dff;
-    --sandy-brown: #fcaa67ff;
-    --coyote: #84613dff;
-    --night: #0c1713ff;
-    --rosewood: #580c0aff;
-    --turkey-red: #a30000ff;
-    --brown-sugar: #b17761ff;
-    --tea-green: #bfedc1ff;
+    --lavender-web: hsla(279, 18%, 84%, 1);
+    --thistle: hsla(326, 21%, 74%, 1);
+    --puce: hsla(336, 26%, 65%, 1);
+    --china-rose: hsla(337, 30%, 55%, 1);
+    --china-rose-2: hsla(337, 39%, 45%, 1);
+    --raspberry-rose: hsla(342, 40%, 48%, 1);
+    --eggplant: hsla(342, 31%, 27%, 1);
+    --night: hsla(158, 31%, 7%, 1);
     --white: #fff;
+    --green: #32a852;
+    --grey-lighter: #f4f4f4;
+    --grey-light: #dfdfdf;
+    --grey: #c2c2c2;
 
-    --border-color: var(--battleship-gray);
+    --border-color: var(--grey-light);
+    --cell-border-color: var(--grey-light);
+    --cell-background: var(--white);
+}
+body {
+    background-color: var(--grey-lighter);
 }

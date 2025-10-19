@@ -2,56 +2,123 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100dvh;
+}
+
+.Checklist__tableWrapper {
+    width: 100%;
+    overflow: auto;
+    padding-bottom: 20px;
+    flex-grow: 1;
 }
 
 .Checklist__table {
     width: max-content;
+    border-collapse: separate;
     tr {
     }
     th,
     td {
-        background-color: var(--white);
+        background-color: var(--cell-background);
+        border: 1px solid var(--cell-border-color);
+        border-left: none;
+        border-top: none;
+        vertical-align: top;
+        &:first-child {
+            border-left: 1px solid var(--border-color);
+        }
     }
 }
 
 .Checklist__header {
+}
+.Checklist__cell__types {
     position: sticky;
     top: 0;
-    z-index: 1;
+    left: 0;
+    background-color: var(--white);
+    z-index: 30;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
+.Checklist__cell__pupil {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.Checklist__cell__task {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background-color: var(--white);
+    border-right: 1px solid var(--border-color);
+}
+
 .Checklist__types,
 .Checklist__task,
 .Checklist__taskCheck,
 .Checklist__pupil {
+    position: relative;
     padding: 20px;
     display: flex;
-    height: 100%;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
 }
 
 .Checklist__pupil {
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .Checklist__types {
-    align-items: center;
-    justify-content: center;
+    font-weight: bold;
 }
-
+.Checklist__task {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    justify-content: flex-start;
+}
 .Checklist__taskCheck {
     padding: 0;
-}
-
-.Checklist__pupil__name {
-    writing-mode: sideways-lr;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    input {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+    label {
+        cursor: pointer;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .Checklist__actions {
-    margin-top: auto;
-    position: sticky;
-    bottom: 0;
     display: flex;
-    background-color: #fff;
-    padding: 20px;
+    flex-wrap: wrap;
+    background-color: var(--white);
+    padding: 12px 20px;
     border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    left: 0;
+    width: 100%;
+    flex-grow: 0;
+}
+.Checklist__deleteButton {
+    position: absolute;
+    right: 0;
+    top: 0;
 }

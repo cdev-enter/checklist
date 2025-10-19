@@ -1,0 +1,26 @@
+.IconCheckmark {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--night);
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+    svg {
+        transition: all 0.3s ease-out;
+        opacity: 0;
+        display: inline-flex;
+        width: 100%;
+        height: auto;
+        g {
+            stroke-width: 1px;
+            fill: var(--green);
+        }
+    }
+}
+.IconCheckmark--checked {
+    transition: all 0.3s ease-out;
+    border-color: var(--green);
+    svg {
+        opacity: 1;
+    }
+}

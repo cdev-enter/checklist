@@ -1,0 +1,10 @@
+.AddItem {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    input {
+        border-radius: 5px;
+        padding: 6px;
+        border: 1px solid var(--grey);
+    }
+}

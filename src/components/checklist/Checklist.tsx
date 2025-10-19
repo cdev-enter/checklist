@@ -10,6 +10,7 @@ import {
     type Pupil,
     type Task,
 } from "../../db/db";
+import { IconCheckmark } from "../../icons/IconCheckmark";
 import { DeleteButton } from "../buttons/delete-button/DeleteButton";
 import { AddItem } from "./AddItem";
 import "./Checklist.scss";
@@ -34,99 +35,117 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
             };
         },
         handleOnDeletePupil = (pupil: Pupil) => {
-            return (e: MouseEvent) => {
+            return (_e: MouseEvent) => {
                 deletePupil(pupil);
             };
         },
         handleOnDeleteTask = (task: Task) => {
-            return (e: MouseEvent) => {
+            return (_e: MouseEvent) => {
                 deleteTask(task);
             };
         };
 
     return (
         <article className={css}>
-            <table className="Checklist__table">
-                <thead className="Checklist__header">
-                    <tr>
-                        <th>
-                            <div className="Checklist__types">
-                                Aufgaben / Schüler
-                            </div>
-                        </th>
-                        {pupils?.map((pupil) => {
+            <div className="Checklist__tableWrapper">
+                <table className="Checklist__table">
+                    <thead className="Checklist__header">
+                        <tr>
+                            <th className="Checklist__cell__types">
+                                <div className="Checklist__types">
+                                    Aufgaben / Schüler
+                                </div>
+                            </th>
+                            {pupils?.map((pupil) => {
+                                return (
+                                    <th
+                                        key={pupil.id}
+                                        className="Checklist__cell__pupil"
+                                    >
+                                        <div className="Checklist__pupil">
+                                            <span className="Checklist__pupil__name">
+                                                {pupil.name}
+                                            </span>
+                                            <DeleteButton
+                                                className="Checklist__deleteButton"
+                                                title="Löschen"
+                                                onClick={handleOnDeletePupil(
+                                                    pupil
+                                                )}
+                                            ></DeleteButton>
+                                        </div>
+                                    </th>
+                                );
+                            })}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tasks?.map((task) => {
                             return (
-                                <th key={pupil.id}>
-                                    <div className="Checklist__pupil">
-                                        <DeleteButton
-                                            title="Löschen"
-                                            onClick={handleOnDeletePupil(pupil)}
-                                        ></DeleteButton>
-                                        <span className="Checklist__pupil__name">
-                                            {pupil.name}
-                                        </span>
-                                    </div>
-                                </th>
+                                <tr key={task.id}>
+                                    <th
+                                        scope="row"
+                                        className="Checklist__cell__task"
+                                    >
+                                        <div className="Checklist__task">
+                                            {task.description}
+                                            <DeleteButton
+                                                className="Checklist__deleteButton"
+                                                type="button"
+                                                title="Löschen"
+                                                onClick={handleOnDeleteTask(
+                                                    task
+                                                )}
+                                            ></DeleteButton>
+                                        </div>
+                                    </th>
+                                    {pupils?.map((pupil) => {
+                                        const hasCompletedTask =
+                                            pupilHasCompletedTheTask(
+                                                task,
+                                                pupil,
+                                                completedTasks || []
+                                            );
+
+                                        return (
+                                            <td key={pupil.id}>
+                                                <div className="Checklist__taskCheck">
+                                                    <label>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={
+                                                                hasCompletedTask
+                                                            }
+                                                            onChange={handleOnChangeCompleted(
+                                                                task,
+                                                                pupil
+                                                            )}
+                                                        ></input>
+                                                        <IconCheckmark
+                                                            checked={
+                                                                hasCompletedTask
+                                                            }
+                                                        ></IconCheckmark>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
                             );
                         })}
-                    </tr>
-                </thead>
-                <tbody>
-                    {tasks?.map((task) => {
-                        return (
-                            <tr key={task.id}>
-                                <th scope="row">
-                                    <div className="Checklist__task">
-                                        {task.description}
-                                        <DeleteButton
-                                            type="button"
-                                            title="Löschen"
-                                            onClick={handleOnDeleteTask(task)}
-                                        ></DeleteButton>
-                                    </div>
-                                </th>
-                                {pupils?.map((pupil) => {
-                                    const hasCompletedTask =
-                                        pupilHasCompletedTheTask(
-                                            task,
-                                            pupil,
-                                            completedTasks || []
-                                        );
-
-                                    return (
-                                        <td>
-                                            <div className="Checklist__taskCheck">
-                                                <label>
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={
-                                                            hasCompletedTask
-                                                        }
-                                                        onChange={handleOnChangeCompleted(
-                                                            task,
-                                                            pupil
-                                                        )}
-                                                    ></input>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
             <div className="Checklist__actions">
                 <AddItem
-                    label="Schüler hinzufügen"
-                    placeholder="Name"
+                    name="name"
+                    label="Name hinzufügen"
                     onAddItem={handleOnAddPupil}
                 ></AddItem>
                 <AddItem
+                    name="task"
                     label="Aufgabe hinzufügen"
-                    placeholder="Beschreibung"
                     onAddItem={handleOnAddTask}
                 ></AddItem>
             </div>
