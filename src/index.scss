@@ -123,10 +123,6 @@ table {
     border-spacing: 0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-}
 * {
     box-sizing: border-box;
     scrollbar-width: thin;
@@ -152,6 +148,21 @@ body {
     --border-color: var(--grey-light);
     --cell-border-color: var(--grey-light);
     --cell-background: var(--white);
+
+    --font-base: 16;
+    --font-base-size: calc(var(--font-base) * 1px);
+    --rem-1px: calc(1rem / var(--font-base));
+    --px20: calc(20 * var(--rem-1px));
+    --px16: calc(16 * var(--rem-1px));
+    --px14: calc(14 * var(--rem-1px));
+    --px12: calc(12 * var(--rem-1px));
+    --px6: calc(6 * var(--rem-1px));
+    --px1: calc(1 * var(--rem-1px));
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 body {
     background-color: var(--grey-lighter);

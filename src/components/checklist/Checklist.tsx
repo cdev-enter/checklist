@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useLiveQuery } from "dexie-react-hooks";
-import type { ChangeEvent, FC, MouseEvent } from "react";
+import { type ChangeEvent, type FC, type MouseEvent } from "react";
 import {
     db,
     deletePupil,
@@ -14,6 +14,16 @@ import { IconCheckmark } from "../../icons/IconCheckmark";
 import { DeleteButton } from "../buttons/delete-button/DeleteButton";
 import { AddItem } from "./AddItem";
 import "./Checklist.scss";
+
+function zoomDocument(amount: number) {
+    const doc = document.documentElement,
+        style = getComputedStyle(doc),
+        current = parseInt(style.fontSize.replace("px", "")),
+        newValue = Math.max(current + amount, 0);
+
+    console.log(doc, doc.style.fontSize, newValue);
+    document.documentElement.style.fontSize = `${newValue}px`;
+}
 
 export interface ChecklistProps {}
 
@@ -43,6 +53,12 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
             return (_e: MouseEvent) => {
                 deleteTask(task);
             };
+        },
+        handleOnClickZoomIn = () => {
+            zoomDocument(+1);
+        },
+        handleOnClickZoomOut = () => {
+            zoomDocument(-1);
         };
 
     return (
@@ -148,6 +164,21 @@ export const Checklist: FC<ChecklistProps> = ({}) => {
                     label="Aufgabe hinzufügen"
                     onAddItem={handleOnAddTask}
                 ></AddItem>
+
+                <button
+                    className="Checklist__zoomBtn"
+                    type="button"
+                    onClick={handleOnClickZoomIn}
+                >
+                    +
+                </button>
+                <button
+                    className="Checklist__zoomBtn"
+                    type="button"
+                    onClick={handleOnClickZoomOut}
+                >
+                    -
+                </button>
             </div>
         </article>
     );

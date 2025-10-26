@@ -8,7 +8,7 @@
 .Checklist__tableWrapper {
     width: 100%;
     overflow: auto;
-    padding-bottom: 20px;
+    padding-bottom: var(--px20);
     flex-grow: 1;
 }
 
@@ -61,9 +61,9 @@
 .Checklist__taskCheck,
 .Checklist__pupil {
     position: relative;
-    padding: 20px;
+    padding: var(--px20);
     display: flex;
-    height: 70px;
+    height: calc(var(--px1) * 70);
     align-items: center;
     justify-content: center;
     min-width: 100px;
@@ -108,11 +108,11 @@
     display: flex;
     flex-wrap: wrap;
     background-color: var(--white);
-    padding: 12px 20px;
+    padding: var(--px12) var(--px20);
     border-top: 1px solid var(--border-color);
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: var(--px12);
     left: 0;
     width: 100%;
     flex-grow: 0;
@@ -121,4 +121,12 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.Checklist__zoomBtn {
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    border: none;
+    border-radius: var(--px6);
 }
